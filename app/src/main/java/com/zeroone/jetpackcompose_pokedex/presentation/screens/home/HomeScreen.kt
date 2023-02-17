@@ -15,31 +15,43 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.zeroone.jetpackcompose_pokedex.domain.model.pokemonList
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.Pokedex
+import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.PokedexItem
 import com.zeroone.jetpackcompose_pokedex.presentation.ui.contents.PokemonItemView
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    pokemonViewModel: PokemonViewModel = hiltViewModel()
+) {
+
+    val pokemonList = pokemonViewModel.pokemonList.value
 
 
     Scaffold(
         topBar = { HomeTopAppBar() },
         content = { innerPadding ->
-                  HomeContent(modifier = Modifier.padding(innerPadding))
+            HomeContent(
+                modifier = Modifier.padding(innerPadding),
+                pokemonList = pokemonList
+            )
         },
     )
 }
 
 
 @Composable
-fun HomeContent(modifier: Modifier= Modifier) {
+fun HomeContent(
+    modifier: Modifier = Modifier,
+    pokemonList: List<PokedexItem>
+) {
     Column(modifier.fillMaxSize()) {
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(4.dp)
         ) {
-            items( items = pokemonList) { item ->
+            items(items = pokemonList) { item ->
                 PokemonItemView(pokemon = item)
             }
         }
