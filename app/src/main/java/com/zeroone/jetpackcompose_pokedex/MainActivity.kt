@@ -3,13 +3,16 @@ package com.zeroone.jetpackcompose_pokedex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.draw.shadow
+import com.zeroone.jetpackcompose_pokedex.domain.model.defaultPokemon
+import com.zeroone.jetpackcompose_pokedex.presentation.screens.home.HomeScreen
+import com.zeroone.jetpackcompose_pokedex.presentation.ui.contents.PokemonItemView
 import com.zeroone.jetpackcompose_pokedex.presentation.ui.theme.JetpackCompose_PokedexTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,27 +20,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackCompose_PokedexTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    HomeScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    JetpackCompose_PokedexTheme {
-        Greeting("Android")
     }
 }
