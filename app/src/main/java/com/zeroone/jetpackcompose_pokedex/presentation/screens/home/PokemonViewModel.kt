@@ -1,7 +1,11 @@
 package com.zeroone.jetpackcompose_pokedex.presentation.screens.home
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zeroone.jetpackcompose_pokedex.data.remote.PokemonRepository
@@ -40,15 +44,15 @@ class PokemonViewModel @Inject constructor(
                     is Response.Loading -> { isLoading.value=true }
                     is Response.Success -> {
                         pokemonList.value = response.data
+
+                        Log.d("PokedexAppTag", "fetchData: ${response.data[0]}")
                     }
                 }
             }
         }
     }
+}
 
-
-    sealed class UIEvent {
-        data class Error(val message: String) : UIEvent()
-    }
-
+sealed class UIEvent {
+    data class Error(val message: String) : UIEvent()
 }

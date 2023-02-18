@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.defaultPokedexItem
+import com.zeroone.jetpackcompose_pokedex.presentation.screens.detail.DetailScreen
 import com.zeroone.jetpackcompose_pokedex.presentation.screens.home.HomeScreen
 import com.zeroone.jetpackcompose_pokedex.presentation.ui.theme.JetpackCompose_PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +21,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackCompose_PokedexTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    HomeScreen()
+                    DetailScreen(defaultPokedexItem)
+                    //HomeScreen()
                 }
             }
         }
