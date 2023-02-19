@@ -33,6 +33,11 @@ class PokemonViewModel @Inject constructor(
     private val _uiEvent = MutableSharedFlow<UIEvent>()
     val uiEvent = _uiEvent.asSharedFlow()
 
+
+    fun getPokemon(id:Int) : PokedexItem{
+        return pokemonList.value.find { it.id == id }!!
+    }
+
     private fun fetchData(){
         viewModelScope.launch {
             pokemonRepo.fetchData().collect{response->

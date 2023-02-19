@@ -92,7 +92,7 @@ dependencies {
 
     //Navigation
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
-    implementation 'com.google.accompanist:accompanist-navigation-animation:0.28.0'
+    implementation "androidx.navigation:navigation-compose:2.5.3"
 
     //Horizontal Pager
     implementation 'com.google.accompanist:accompanist-pager-indicators:0.28.0'

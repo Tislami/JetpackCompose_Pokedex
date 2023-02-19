@@ -12,22 +12,27 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun DetailTopBar(
-    navigationOnClick: ()-> Unit,
-    actionOnClick: ()-> Unit,
+    navigationOnClick: () -> Unit,
+    actionOnClick: () -> Unit,
     color: Color,
 ) {
+
+    var favoriteIcon by remember {
+        mutableStateOf(Icons.Default.FavoriteBorder)
+    }
+
     TopAppBar(
         backgroundColor = color,
         elevation = 0.dp,
         title = {},
-        navigationIcon = { 
+        navigationIcon = {
             IconButton(onClick = navigationOnClick) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
@@ -37,9 +42,12 @@ fun DetailTopBar(
             }
         },
         actions = {
-            IconButton(onClick = actionOnClick) {
+            IconButton(onClick = {
+                favoriteIcon = Icons.Default.Favorite
+                actionOnClick()
+            }) {
                 Icon(
-                    imageVector = Icons.Default.FavoriteBorder,
+                    imageVector = favoriteIcon,
                     contentDescription = null,
                     tint = Color.White
                 )

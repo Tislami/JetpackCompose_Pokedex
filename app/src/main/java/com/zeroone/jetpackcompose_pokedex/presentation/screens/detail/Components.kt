@@ -2,6 +2,7 @@ package com.zeroone.jetpackcompose_pokedex.presentation.screens.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
+import coil.compose.AsyncImage
 import com.zeroone.jetpackcompose_pokedex.R
 import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.EvolutionChain
 
@@ -116,12 +118,18 @@ fun BaseStatsBarField(
 }
 
 @Composable
-fun EvolutionField(pokemon: EvolutionChain) {
+fun EvolutionField(
+    pokemon: EvolutionChain,
+    onClick: (Int) -> Unit,
+    color: Color,
+    imageUrl: String
+) {
     Column(
         modifier = Modifier
+            .clickable { onClick(pokemon.id.toInt()) }
             .padding(16.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(Color.Gray.copy(alpha = .25f)),
+            .background(color),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -129,8 +137,8 @@ fun EvolutionField(pokemon: EvolutionChain) {
             fontWeight = FontWeight.Bold,
             color = Color.White
         )
-        Image(
-            painter = painterResource(id = R.drawable.bulbasaur),
+        AsyncImage(
+            model = imageUrl,
             contentDescription = null
         )
     }

@@ -1,6 +1,7 @@
 package com.zeroone.jetpackcompose_pokedex.presentation.ui.contents
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
@@ -23,10 +24,11 @@ import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.PokedexItem
 
 @Composable
 fun PokemonItemView(
-    pokemon: PokedexItem
+    pokemon: PokedexItem,
+    onclick : ()-> Unit,
 ) {
     Surface(
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(4.dp).clickable { onclick() },
         shape = RoundedCornerShape(12),
         elevation = 8.dp,
         color = pokemon.getColor()

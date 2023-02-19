@@ -1,6 +1,7 @@
 package com.zeroone.jetpackcompose_pokedex.presentation.screens.home
 
 import android.content.ClipData.Item
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,12 +19,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.Pokedex
 import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.PokedexItem
 import com.zeroone.jetpackcompose_pokedex.presentation.ui.contents.PokemonItemView
 
 @Composable
 fun HomeScreen(
+    navController: NavController,
     pokemonViewModel: PokemonViewModel = hiltViewModel()
 ) {
 
@@ -35,7 +38,8 @@ fun HomeScreen(
         content = { innerPadding ->
             HomeContent(
                 modifier = Modifier.padding(innerPadding),
-                pokemonList = pokemonList
+                pokemonList = pokemonList,
+                navigateToItem = { navController.navigate("detail/$it") }
             )
         },
     )
@@ -45,7 +49,8 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     modifier: Modifier = Modifier,
-    pokemonList: List<PokedexItem>
+    pokemonList: List<PokedexItem>,
+    navigateToItem : (Int) -> Unit,
 ) {
     Column(modifier.fillMaxSize()) {
 
@@ -54,7 +59,10 @@ fun HomeContent(
             contentPadding = PaddingValues(4.dp)
         ) {
             items(items = pokemonList) { item ->
-                PokemonItemView(pokemon = item)
+                PokemonItemView(
+                    pokemon = item,
+                    onclick = { navigateToItem(item.id) }
+                )
             }
         }
     }

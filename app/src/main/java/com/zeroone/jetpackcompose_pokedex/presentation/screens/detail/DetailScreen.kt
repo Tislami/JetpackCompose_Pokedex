@@ -1,5 +1,6 @@
 package com.zeroone.jetpackcompose_pokedex.presentation.screens.detail
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -17,18 +18,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.PokedexItem
+import com.zeroone.jetpackcompose_pokedex.domain.model.pokedex.defaultPokedexItem
+import com.zeroone.jetpackcompose_pokedex.presentation.screens.home.PokemonViewModel
 
 @Composable
 fun DetailScreen(
-    pokedexItem: PokedexItem
+    navController: NavController,
+    pokedexItemId : Int,
+    pokemonViewModel: PokemonViewModel,
 ) {
-
+    val pokedexItem = pokemonViewModel.getPokemon(pokedexItemId)
     Scaffold(
         topBar = {
             DetailTopBar(
-                navigationOnClick = { },
+                navigationOnClick = { navController.popBackStack() },
                 actionOnClick = {},
                 color = pokedexItem.getColor()
             )
@@ -36,7 +43,10 @@ fun DetailScreen(
         content = { innerPadding ->
             DetailContent(
                 modifier = Modifier.padding(innerPadding),
-                pokedexItem = pokedexItem
+                pokedexItem = pokedexItem,
+                navigateToPokemonDetail = {
+                    navController.navigate("detail/$it")
+                }
             )
         },
     )
@@ -46,6 +56,7 @@ fun DetailScreen(
 @Composable
 private fun DetailContent(
     modifier: Modifier = Modifier,
+    navigateToPokemonDetail : (Int) -> Unit,
     pokedexItem: PokedexItem
 ) {
 
@@ -92,7 +103,7 @@ private fun DetailContent(
             when (selectedTabIndex) {
                 0 -> About(pokedexItem = pokedexItem)
                 1 -> BaseStats(pokedexItem = pokedexItem)
-                2 -> Evolution(pokedexItem = pokedexItem)
+                2 -> Evolution(pokedexItem = pokedexItem, onClick = navigateToPokemonDetail)
             }
         }
     }
@@ -157,11 +168,16 @@ private fun Head(pokedexItem: PokedexItem) {
 }
 
 @Composable
-private fun Evolution(pokedexItem: PokedexItem) {
+private fun Evolution(
+    onClick : (Int) -> Unit,
+    pokedexItem: PokedexItem,
+) {
     
     LazyRow(modifier = Modifier.padding(vertical = 32.dp)) {
         items(pokedexItem.evolutionChain) { pokemon ->
-            EvolutionField(pokemon)
+
+            var pokemon =
+            EvolutionField(pokemon,onClick,pokedexItem.getColor(),pokedexItem.imageUrl)
         }
     }
 }
