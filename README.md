@@ -20,6 +20,8 @@ When the user clicks on a Pokemon item, the app navigates to the details screen 
 
 
 ## Screenshots
-![Screenshot_20230308_212425](https://user-images.githubusercontent.com/41927152/223785482-ed37c6d3-f91e-4004-883f-4f0389eb3058.png)![Screenshot_20230308_212655](https://user-images.githubusercontent.com/41927152/223785863-79fd66c4-7d92-427a-8513-47c5154fd162.png)
-![Screenshot_20230308_212637](https://user-images.githubusercontent.com/41927152/223785912-aab141d4-ad76-4342-8c54-6749cb57c956.png)![Screenshot_20230308_212625](https://user-images.githubusercontent.com/41927152/223785931-105d16be-6b14-4aee-b465-940b08fca691.png)
-![Screenshot_20230308_212702](https://user-images.githubusercontent.com/41927152/223785948-81f424f7-fc40-49db-839e-470549d5e573.png)
+<img width="384" alt="Ekran Resmi 2023-03-08 21 35 11" src="https://user-images.githubusercontent.com/41927152/223787802-513dae7c-4978-4eed-b464-80cb74c84bd6.png">
+<img width="384" alt="Ekran Resmi 2023-03-08 21 36 18" src="https://user-images.githubusercontent.com/41927152/223788168-7b212b7b-7b98-46d6-b6f1-fa13691e31f4.png">
+<img width="384" alt="Ekran Resmi 2023-03-08 21 36 26" src="https://user-images.githubusercontent.com/41927152/223788169-62a8e5e2-362e-40f4-b90d-9386f1dfbb3f.png">
+<img width="384" alt="Ekran Resmi 2023-03-08 21 36 49" src="https://user-images.githubusercontent.com/41927152/223788170-5c0dc133-0646-4d08-aee5-39bbb5ef5f1a.png">
+<img width="384" alt="Ekran Resmi 2023-03-08 21 36 33" src="https://user-images.githubusercontent.com/41927152/223788199-c52a1b75-6838-4093-bc19-d8872c93962c.png">
